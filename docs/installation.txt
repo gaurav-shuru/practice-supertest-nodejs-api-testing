@@ -1,0 +1,101 @@
+LIBRRARIES/FRAMEWORKS
+
+- NODE JS and NPM
+- SuperTest
+- Mocha
+- Chai
+- Babel (ES6+)	 
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+INSTALLATION COMMAND
+
+npm init -y
+
+npm i --save-dev supertest mocha chai @babel/cli @babel/core @babel/node @babel/register @babel/preset-env
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+BABEL/ES6 CONFIGURATION - to use ES6 
+
+- create .bablerc file > configure
+- add following text: 
+
+    {
+        "presets" : ["@babel/preset-env"]
+    }
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+CONFIGURE MOCHA WITH BABEL
+
+- create .mocharc.yaml file > register babel
+- add following text:
+
+    require: '@babel/register'
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+RUN THE TEST - MOCHA COMMAND
+
+- go to package.json > script > test
+- change it to ["test": "mocha"]
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+ADDITIONAL INSTALLATION - for @babel/register error on execution
+
+npm install mocha @babel/register
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+ADDITIONAL BABEL CONFIGURATION - for async/await 
+
+> go to .bablerc > add following fields in object
+> updated .bablerc : 
+
+    {
+     "presets" : ["@babel/preset-env"],
+     "@plugins": [
+          ["@babel/transform-runtime",{
+            "regenerator": true
+          }]
+     ]
+    }
+
+> npm i @babel/plugin-transform-runtime
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+FAKER-JS - To generate random data like name, email, etc.
+
+> installation command : 
+
+    npm install --save-dev @faker-js/faker
+
+- - - - - - - - - - - - - - - - - - - - - - - >
+
+.ENV SETUP
+
+> create .env file and save credentials like token, etc.
+> install this package to read from .env file
+
+    npm i dotenv
+
+REPORTER INSTALLATION - MOCHAWESOME : automatically generate reports in html & json
+
+> installation command :
+
+    npm i --save-dev mochawesome
+
+> run the test using following command
+
+    npm test -- --reporter mochawesome | npm test
+
+    OR add script in package.json
+
+    "scripts": 
+    {
+        "test": "mocha --timeout 5000",
+        "test-html": "mocha --timeout 5000  -- --reporter mochawesome"
+    }
